@@ -71,7 +71,7 @@ function clearInterface() {
   [...interface.children].forEach((e) => e.style.backgroundColor = 'white');
 }}
 
-function changeColor() {
+function changeColorScheme() {
   const interfaceSquares = document.querySelectorAll('.interface div');
   if (this.value == 'shades-of-grey') {
     interfaceSquares.forEach((square) => square.style.backgroundColor = 'black');
@@ -85,4 +85,4 @@ function changeColor() {
 
 numberChange.addEventListener('input', calculateSquares);
 clearButton.addEventListener('click', clearInterface);
-colorChange.addEventListener('change', changeColor);
+colorChange.addEventListener('change', changeColorScheme);
