@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.interface {
+  display: grid;
+  height: 90vh;
+  width: 90vh;
+}
+
+.interface > * {
+  outline: solid blue .5px;
+}
