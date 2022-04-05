@@ -1,6 +1,7 @@
 const interface = document.querySelector('.interface');
 const input = document.querySelector('input');
 const clearButton = document.querySelector('.clear-button');
+const gridSize = document.querySelector('.grid-size');
 
 for (let i = 0; i < input.value**2; i++) {
   const square = document.createElement('div');
@@ -12,12 +13,13 @@ for (let i = 0; i < input.value**2; i++) {
 
 function calculateSquares() {
   if (input.value > 100 || input.value < 1) {
-    input.value = 'Try a different number';
+    input.value = '';
     return;
   };
   while (interface.firstChild) {
     interface.removeChild(interface.lastChild);
   }
+  gridSize.textContent = `Grid Size = ${input.value}x${input.value}`
   let number = Math.floor(input.value);
   for (let i = 0; i < number**2; i++) {
     const square = document.createElement('div');
@@ -32,5 +34,9 @@ function colorIt() {
   this.style.backgroundColor = 'red';
 }
 
-input.addEventListener('change', calculateSquares);
+function clearInterface() {
+  [...interface.children].forEach((e) => e.style.backgroundColor = 'white');
+}
 
+input.addEventListener('input', calculateSquares);
+clearButton.addEventListener('click', clearInterface);

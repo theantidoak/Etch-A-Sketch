@@ -9,7 +9,16 @@
   <body>
     <div class='container'>
       <div class='buttons'>
-        <input type='text' max='100' min='2' value='16'>Pick a Number</input>
+        <label for='change-number'>Change Grid Size (1-100):</label>
+        <input class='change-number' type='text' max='100' min='2' value='16'></input>
+        <p class='grid-size'>Grid Size: 16x16</p>
+        <label for='change-color'>Change color:</label>
+        <select class='change-color'>
+          <option value='black'>Choose</option>
+          <option value='random'>Random</option>
+          <option value='rainbow'>Rainbow</option>
+          <option value='shades-of-grey'>Shades of Grey</option>
+        </select>
         <button class='clear-button'>Clear</button>
       </div>
       <div class='interface'></div>

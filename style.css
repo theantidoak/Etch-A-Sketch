@@ -1,14 +1,28 @@
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.change-number {
+  width: 3rem;
+}
+
+.grid-size {
+  display: inline-block;
+}
+
+.clear-button {
+  display: block;
 }
 
 .interface {
   display: grid;
   height: 90vh;
   width: 90vh;
+  outline: 2px solid blue;
 }
 
 .interface > * {
-  outline: solid blue .5px;
+  border-radius: 50%;
 }
