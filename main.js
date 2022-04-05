@@ -4,7 +4,10 @@ const clearButton = document.querySelector('.clear-button');
 const gridSize = document.querySelector('.grid-size');
 const colorPalette = document.querySelector('.color-palette');
 const colorChange = document.querySelector('.change-color');
+const colorOption = document.querySelectorAll('option');
 let flag = false;
+let color = 0;
+let grey = 255;
 
 for (let i = 0; i < numberChange.value**2; i++) {
   const square = document.createElement('div');
@@ -12,14 +15,12 @@ for (let i = 0; i < numberChange.value**2; i++) {
   interface.style.gridTemplateColumns = `repeat(${numberChange.value}, 1fr)`;
   interface.style.gridTemplateRows = `repeat(${numberChange.value}, 1fr)`;
   interface.appendChild(square);
-  square.addEventListener('mousedown', () => flag = true);
-  square.addEventListener('mouseup', () => flag = false);
-  interface.addEventListener('mouseleave', () => flag = false);
+  document.addEventListener('mousedown', () => flag = true);
+  document.addEventListener('mouseup', () => flag = false);
   square.addEventListener('mouseenter', (colorIt));
 }
 
 function calculateSquares() {
-  flag = false;
   if (numberChange.value > 100 || numberChange.value < 1) {
     numberChange.value = '';
     return;
@@ -35,24 +36,46 @@ function calculateSquares() {
     interface.style.gridTemplateColumns = `repeat(${numberChange.value}, 1fr)`;
     interface.style.gridTemplateRows = `repeat(${numberChange.value}, 1fr)`;
     interface.appendChild(square);
-    square.addEventListener('mousedown', () => flag = true);
-    square.addEventListener('mouseup', () => flag = false);
-    interface.addEventListener('mouseleave', () => flag = false);
+    document.addEventListener('mousedown', () => flag = true);
+    document.addEventListener('mouseup', () => flag = false);
     square.addEventListener('mouseenter', (colorIt));
   }
 }
 
-function colorIt(e) {
-  if (this.style.backgroundColor == 'white' && flag == true) {
-  this.style.backgroundColor = `${colorPalette.value}`;
+function colorIt() {
+  if (this.style.backgroundColor == 'white' && flag || this.style.backgroundColor == 'black' && flag) {
+    if (colorChange.value == 'default') {
+      this.style.backgroundColor = 'black';
+    } else if (colorChange.value == 'color-wheel') {
+      this.style.backgroundColor = `${colorPalette.value}`;
+    } else if (colorChange.value == 'random') {
+      this.style.backgroundColor = `rgb(${Math.floor(Math.random()*245)}, ${Math.floor(Math.random()*245)}, ${Math.floor(Math.random()*245)})`;
+    } else if (colorChange.value == 'rainbow') {
+      this.style.backgroundColor = `hsl(${color*2}, 100%, 50%)`;
+    } else if (colorChange.value == 'shades-of-grey' && grey > 10) {
+      this.style.backgroundColor = `rgb(${grey}, ${grey}, ${grey})`;
+    }
+    color++;
+    grey *= .98;
+    if (grey < 10 ) {
+      grey = 255;
+    }
   }
 }
 
 function clearInterface() {
+  if (colorChange.value == 'shades-of-grey') {
+    [...interface.children].forEach((e) => e.style.backgroundColor = 'black');
+    grey = 255;
+  } else {
   [...interface.children].forEach((e) => e.style.backgroundColor = 'white');
-}
+}}
 
 function changeColor() {
+  const interfaceSquares = document.querySelectorAll('.interface div');
+  if (this.value == 'shades-of-grey') {
+    interfaceSquares.forEach((square) => square.style.backgroundColor = 'black');
+  }
   if (this.value == 'color-wheel'){
     colorPalette.style.display = 'block';
   } else {
