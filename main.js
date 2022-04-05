@@ -8,6 +8,8 @@ const colorOption = document.querySelectorAll('option');
 let flag = false;
 let color = 0;
 let grey = 255;
+let friendlyFire = false;
+const ffButton = document.querySelector('.friendly-fire');
 
 for (let i = 0; i < numberChange.value**2; i++) {
   const square = document.createElement('div');
@@ -43,7 +45,27 @@ function calculateSquares() {
 }
 
 function colorIt() {
-  if (this.style.backgroundColor == 'white' && flag || this.style.backgroundColor == 'black' && flag) {
+
+  if (friendlyFire) {
+    if (this.style.backgroundColor == 'white' && flag || this.style.backgroundColor == 'black' && colorChange.value == 'shades-of-grey' && flag) {
+      if (colorChange.value == 'default') {
+        this.style.backgroundColor = 'black';
+      } else if (colorChange.value == 'color-wheel') {
+        this.style.backgroundColor = `${colorPalette.value}`;
+      } else if (colorChange.value == 'random') {
+        this.style.backgroundColor = `rgb(${Math.floor(Math.random()*245)}, ${Math.floor(Math.random()*245)}, ${Math.floor(Math.random()*245)})`;
+      } else if (colorChange.value == 'rainbow') {
+        this.style.backgroundColor = `hsl(${color*2}, 100%, 50%)`;
+      } else if (colorChange.value == 'shades-of-grey' && grey > 10) {
+        this.style.backgroundColor = `rgb(${grey}, ${grey}, ${grey})`;
+      }
+      color++;
+      grey *= .98;
+      if (grey < 10 ) {
+        grey = 255;
+      }
+    }
+  } else if (flag) {
     if (colorChange.value == 'default') {
       this.style.backgroundColor = 'black';
     } else if (colorChange.value == 'color-wheel') {
@@ -62,6 +84,7 @@ function colorIt() {
     }
   }
 }
+
 
 function clearInterface() {
   if (colorChange.value == 'shades-of-grey') {
@@ -86,3 +109,4 @@ function changeColorScheme() {
 numberChange.addEventListener('input', calculateSquares);
 clearButton.addEventListener('click', clearInterface);
 colorChange.addEventListener('change', changeColorScheme);
+ffButton.addEventListener('click', () => friendlyFire = !friendlyFire);
