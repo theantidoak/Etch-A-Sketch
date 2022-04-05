@@ -4,18 +4,22 @@ const clearButton = document.querySelector('.clear-button');
 const gridSize = document.querySelector('.grid-size');
 const colorPalette = document.querySelector('.color-palette');
 const colorChange = document.querySelector('.change-color');
-
-console.log(colorPalette.value);
+let flag = false;
 
 for (let i = 0; i < numberChange.value**2; i++) {
   const square = document.createElement('div');
+  square.style.backgroundColor = 'white';
   interface.style.gridTemplateColumns = `repeat(${numberChange.value}, 1fr)`;
   interface.style.gridTemplateRows = `repeat(${numberChange.value}, 1fr)`;
   interface.appendChild(square);
+  square.addEventListener('mousedown', () => flag = true);
+  square.addEventListener('mouseup', () => flag = false);
+  interface.addEventListener('mouseleave', () => flag = false);
   square.addEventListener('mouseenter', (colorIt));
 }
 
 function calculateSquares() {
+  flag = false;
   if (numberChange.value > 100 || numberChange.value < 1) {
     numberChange.value = '';
     return;
@@ -27,15 +31,21 @@ function calculateSquares() {
   let number = Math.floor(numberChange.value);
   for (let i = 0; i < number**2; i++) {
     const square = document.createElement('div');
-    interface.style.gridTemplateColumns = `repeat(${number}, 1fr)`;
-    interface.style.gridTemplateRows = `repeat(${number}, 1fr)`;
+    square.style.backgroundColor = 'white';
+    interface.style.gridTemplateColumns = `repeat(${numberChange.value}, 1fr)`;
+    interface.style.gridTemplateRows = `repeat(${numberChange.value}, 1fr)`;
     interface.appendChild(square);
+    square.addEventListener('mousedown', () => flag = true);
+    square.addEventListener('mouseup', () => flag = false);
+    interface.addEventListener('mouseleave', () => flag = false);
     square.addEventListener('mouseenter', (colorIt));
   }
 }
 
-function colorIt() {
+function colorIt(e) {
+  if (this.style.backgroundColor == 'white' && flag == true) {
   this.style.backgroundColor = `${colorPalette.value}`;
+  }
 }
 
 function clearInterface() {

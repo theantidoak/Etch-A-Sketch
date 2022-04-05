@@ -25,8 +25,9 @@
   height: 90vh;
   width: 90vh;
   outline: 2px solid blue;
+  background-color: white
 }
 
-.interface > * {
-  border-radius: 50%;
-}
+/* .interface > * {
+  border-radius: 50%;;
+} */
