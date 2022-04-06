@@ -16,6 +16,10 @@
   display: none;
 }
 
+.chameleon {
+  display: none;
+}
+
 .clear-button {
   display: block;
 }
@@ -28,6 +32,6 @@
   background-color: white;
 }
 
-/* .interface > * {
-  border-radius: 50%;;
-} */
+.interface > * {
+  border-radius: 50%
+}
