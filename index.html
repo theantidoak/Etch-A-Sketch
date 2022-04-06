@@ -9,32 +9,36 @@
 
 <body>
   <div class='container'>
-    <div class='buttons'>
-      <label for='change-number'>Change Grid Size (1-100):</label>
+    <div class='left-side'>
+      <label for='change-number' class='label-number' >Change Grid Size</label>
+      <p class="range">(1-100):</p>
       <input class='change-number' type='text' max='100' min='2' value='16'></input>
       <p class='grid-size'>Grid Size: 16x16</p>
-      <label for='change-color'>Change color scheme:</label>
-      <select class='change-color'>
-        <option value='default'>--Choose Here--</option>
-        <option value='color-wheel'>Color Palette</option>
-        <option value='random'>Roll the Dice</option>
-        <option value='rainbow'>Rainbow Progression</option>
-        <option value='shades-of-grey'>Shades of Grey</option>
-      </select>
-      <input class='color-palette' type='color' value='#05E614'></input>
       <button class='clear-button'>Clear</button>
-      <div>
+      <div class="friendly-fire-div">
         <button class='friendly-fire'>Toggle Friendly-fire</button>
         <p class='ff-toggle-on'>On</p>
+      </div>
+      <button class="shape">Click for Circle</button>
+    </div>
+    <div class='interface'></div>
+    <div class="right-side">
+      <div>
+        <label for='change-color'>Change color scheme:</label>
+        <select class='change-color'>
+          <option value='default'>--Choose Here--</option>
+          <option value='color-wheel'>Color Palette</option>
+          <option value='random'>Roll the Dice</option>
+          <option value='rainbow'>Rainbow Road</option>
+          <option value='shades-of-grey'>Shades of Grey</option>
+        </select>
+        <input class='color-palette' type='color' value='#05E614'></input>
       </div>
       <div class='chameleon'>
         <button class='chameleon-button'>Chameleon mode</button>
         <p class='chameleon-toggle'>Off</p>
       </div>
-      <button class="shape">Click for Circle</button>
     </div>
-    <div class='interface'></div>
-    <div></div>
 
   </div>
 

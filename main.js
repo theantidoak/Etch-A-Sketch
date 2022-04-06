@@ -136,7 +136,7 @@ function toggleChameleon() {
   chameleon = !chameleon;
 }
 
-function toggleForm() {
+function toggleDivShape() {
   const interfaceSquares = document.querySelectorAll(".interface div");
   if (!toggleShape) {
     interfaceSquares.forEach((square) => square.style.borderRadius = '50%');
@@ -154,5 +154,5 @@ clearButton.addEventListener("click", clearInterface);
 colorChange.addEventListener("change", changeColorScheme);
 friendlyFireButton.addEventListener("click", toggleFriendlyFire);
 chameleonButton.addEventListener("click", toggleChameleon);
-shape.addEventListener('click', toggleForm);
+shape.addEventListener('click', toggleDivShape);
   
