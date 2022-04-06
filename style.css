@@ -12,6 +12,10 @@
   display: inline-block;
 }
 
+.ff-toggle-on, .chameleon-toggle {
+  display: inline-block;
+}
+
 .color-palette {
   display: none;
 }
@@ -33,5 +37,5 @@
 }
 
 .interface > * {
-  border-radius: 50%
+  border-radius: 0;
 }
