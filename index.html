@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang='en'>
-  <head>
-    <meta charset='UTF-8'>
-    <link rel='stylesheet' href='style.css'>
-    <title>Etch-A-Sketch</title>
-  </head>
-  
-  <body>
-    <div class='container'>
-      <div class='buttons'>
-        <label for='change-number'>Change Grid Size (1-100):</label>
-        <input class='change-number' type='text' max='100' min='2' value='16'></input>
-        <p class='grid-size'>Grid Size: 16x16</p>
-        <label for='change-color'>Change color scheme:</label>
-        <select class='change-color'>
-          <option value='default'>--Choose Here--</option>
-          <option value='color-wheel'>Color Palette</option>
-          <option value='random'>Roll the Dice</option>
-          <option value='rainbow'>Rainbow Progression</option>
-          <option value='shades-of-grey'>Shades of Grey</option>
-        </select>
-        <input class='color-palette' type='color' value='#05E614'></input>
-        <button class='clear-button'>Clear</button>
-        <button class='friendly-fire'>Toggle Friendly-fire</button>
-      </div>
-      <div class='interface'></div>
-      <div></div>
-    
+
+<head>
+  <meta charset='UTF-8'>
+  <link rel='stylesheet' href='style.css'>
+  <title>Etch-A-Sketch</title>
+</head>
+
+<body>
+  <div class='container'>
+    <div class='buttons'>
+      <label for='change-number'>Change Grid Size (1-100):</label>
+      <input class='change-number' type='text' max='100' min='2' value='16'></input>
+      <p class='grid-size'>Grid Size: 16x16</p>
+      <label for='change-color'>Change color scheme:</label>
+      <select class='change-color'>
+        <option value='default'>--Choose Here--</option>
+        <option value='color-wheel'>Color Palette</option>
+        <option value='random'>Roll the Dice</option>
+        <option value='rainbow'>Rainbow Progression</option>
+        <option value='shades-of-grey'>Shades of Grey</option>
+      </select>
+      <input class='color-palette' type='color' value='#05E614'></input>
+      <button class='clear-button'>Clear</button>
+      <button class='friendly-fire'>Toggle Friendly-fire</button>
+      <p class='toggle-on'>On</p>
     </div>
-    
-    <script src='main.js'></script>
-  </body>
+    <div class='interface'></div>
+    <div></div>
+
+  </div>
+
+  <script src='main.js'></script>
+</body>
+
 </html>
