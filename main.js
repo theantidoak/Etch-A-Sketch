@@ -79,7 +79,7 @@ function colorEachSquare() {
                 )})`)
             )
           : null;
-        if (friendlyFire) {
+        if (friendlyFire && chameleon) {
           white == true
             ? (this.style.backgroundColor = `rgb(${Math.floor(
                 Math.random() * 245
@@ -108,7 +108,7 @@ function colorEachSquare() {
                 )}, 100%, 50%)`)
             )
           : null;
-        if (friendlyFire) {
+        if (friendlyFire && chameleon) {
           white == true
             ? (this.style.backgroundColor = `hsl(${color * 2}, 100%, 50%)`)
             : document.body.style.backgroundColor = `hsl(${color * 2}, 100%, 50%)`;
@@ -124,7 +124,7 @@ function colorEachSquare() {
               e.style.backgroundColor = `rgb(${grey}, ${grey}, ${grey})`;
             })
           : null;
-        if (friendlyFire) {
+        if (friendlyFire && chameleon) {
           black == true && friendlyFire == false
             ? (this.style.backgroundColor = `rgb(${grey}, ${grey}, ${grey})`)
             : document.body.style.backgroundColor =`rgb(${grey}, ${grey}, ${grey})`;
@@ -241,8 +241,8 @@ function toggleDivShape() {
     interfaceSquares.forEach((square) => (square.style.borderRadius = "0"));
     shape.forEach((shapes) => {
       shapes.style.borderRadius = "0";
-      shapes.style.height = "86px";
-      shapes.style.width = "86px";
+      shapes.style.height = "80px";
+      shapes.style.width = "80px";
       shapes.textContent = '';
     });
   }

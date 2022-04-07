@@ -44,7 +44,7 @@ html {
 .change-number {
   width: 2rem;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   border: none;
   outline: 2px solid rgba(0, 0, 0, 0.3);
   margin-top: 1.5px;
@@ -55,11 +55,11 @@ html {
   grid-row: 3 / 4;
   align-self: end;
   justify-self: center;
-  height: 86px;
-  width: 86px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
   box-shadow: 10px 5px 5px black;
-  border: dotted grey 3px;
+  outline: dotted grey 3px;
   background-color: #003366;
   color: white;
 }
@@ -73,7 +73,7 @@ html {
   width: 80px;
   border-radius: 50%;
   overflow: hidden;
-  border: dotted grey 3px;
+  outline: dotted grey 3px;
   box-shadow: 10px 5px 5px black;
 }
 
