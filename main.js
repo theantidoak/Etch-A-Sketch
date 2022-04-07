@@ -1,7 +1,7 @@
 const interface = document.querySelector(".interface");
 const numberChange = document.querySelector(".change-number");
 const clearButton = document.querySelector(".clear-button");
-const gridSize = document.querySelector(".grid-size");
+const gridSpan = document.querySelector(".grid-span");
 const colorPalette = document.querySelector(".color-palette");
 const colorChange = document.querySelector(".change-color");
 const colorSchemes = colorChange.children;
@@ -41,7 +41,7 @@ function recalculateSquares() {
   while (interface.firstChild) {
     interface.removeChild(interface.lastChild);
   }
-  gridSize.textContent = ` x ${numberChange.value}`;
+  gridSpan.textContent = ` x ${numberChange.value}`;
   createInterface();
 }
 
