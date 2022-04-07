@@ -85,11 +85,15 @@ html {
 .instructions {
   background-color: black;
   color: white;
-  padding: 8vh;
+  padding-top: 3rem;
 }
 
 .instructions >:first-child {
   text-align: center;
+}
+
+.instructions >:nth-child(2) {
+  font-size: 14px;
 }
 
 .interface > * {

@@ -80,6 +80,7 @@ function colorEachSquare() {
         } else {
           this.style.backgroundColor = `hsl(${color * 2}, 100%, 50%)`;
         }
+        color++;
         break;
       case 'shades-of-grey':
         chameleon ? [...interface.children].forEach((e) => {
@@ -91,12 +92,11 @@ function colorEachSquare() {
         } else {
           this.style.backgroundColor = `rgb(${grey}, ${grey}, ${grey})`;
         }
+        grey *= 0.98;
+        if (grey < 10) {
+          grey = 255;
+        }
         break;
-    }
-    color++;
-    grey *= 0.98;
-    if (grey < 10) {
-      grey = 255;
     }
   }
 }
@@ -126,9 +126,6 @@ function changeColorScheme() {
   if (this.value == "shades-of-grey") {
     interfaceSquares.forEach((square) => square.style.backgroundColor = "black");
     interface.style.backgroundColor = 'black';
-  } else {
-    interface.style.backgroundColor = 'white';
-    interfaceSquares.forEach((square) => square.style.backgroundColor = "white");
   }
   if (this.value == "color-wheel") {
     colorPalette.style.visibility = "visible";
