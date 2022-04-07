@@ -4,19 +4,25 @@ html {
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr .8fr 1fr; 
+  transition: all .08s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translate(0, 0);
+}
+
+.shake {
+  transform: translateX(-2vw);
 }
 
 .left-side {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr repeat(3, 2fr);
+  grid-template-rows: 1.8fr 1.8fr 1.5fr .5fr;
   align-self: stretch;
   font-size: 18px;
-  background-color: red;
+  background-color: #003366;
   width: 130px;
   justify-self: end;
-  border-radius: 15% 0 0 15%;
+  border-radius: 30px 0 0 30px;
 }
 
 .layout {
@@ -25,44 +31,50 @@ html {
   justify-self: center;
   align-self: center;
   margin-top: 1rem;
+  font-family: Brush Script MT, Brush Script Std, cursive;
 }
 
 .grid-size {
-  grid-column: 1 / 3;
-  grid-row: 3 / 4;
-  justify-self: center;
-  align-self: end;
-  margin-top: 1rem;
+  grid-column: 2 / 3;
+  justify-self: stretch;
+  align-self: stretch;
+  background-color: white;
 }
 
 .change-number {
   width: 2rem;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   border: none;
-  outline: 2px solid rgba(0, 0 , 0, .3);
-}
-
-.friendly-fire {
-  grid-column: 1 / 3;
-  grid-row: 3 / 4;
-  align-self: start;
-  justify-self: center;
-  background-color: black;
-  font-size: 30px;
-  border-radius: 50%;
-  width: 3.5rem;
-  height: 2.5rem;
+  outline: 2px solid rgba(0, 0, 0, 0.3);
+  margin-top: 1.5px;
 }
 
 .shape {
   grid-column: 1 / 3;
-  grid-row: 4 / 5;
-  align-self: center;
+  grid-row: 3 / 4;
+  align-self: end;
   justify-self: center;
-  height: 100px;
-  width: 100px;
+  height: 86px;
+  width: 86px;
   border-radius: 50%;
+  box-shadow: 10px 5px 5px black;
+  border: dotted grey 3px;
+  background-color: #003366;
+  color: white;
+}
+
+.color-circle {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+  align-self: end;
+  justify-self: center;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: dotted grey 3px;
+  box-shadow: 10px 5px 5px black;
 }
 
 .mid-section {
@@ -71,28 +83,39 @@ html {
 }
 
 .interface-top {
-  height: 1.5vh;
-  background-color: red;
+  height: 3vh;
+  background-color: #003366;
 }
 
 .interface {
   display: grid;
-  height: 90vh;
-  width: 90vh;
+  height: 85vh;
+  width: 85vh;
   background-color: white;
 }
 
+.interface-bottom-color {
+  height: 3vh;
+  background-color: #003366;
+}
+
+.bottom-interface {
+  display: grid;
+  grid-template-columns: 5fr 1.2fr;
+  grid-column: 1;
+}
+
 .instructions {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   padding-top: 3rem;
 }
 
-.instructions >:first-child {
+.instructions > :first-child {
   text-align: center;
 }
 
-.instructions >:nth-child(2) {
+.instructions > :nth-child(2) {
   font-size: 14px;
 }
 
@@ -101,22 +124,23 @@ html {
 }
 
 .clear-button {
-  grid-column: 1;
-  grid-row: 6 / 7;
-  align-self: center;
+  grid-column: 1 / 2;
+  align-self: stretch;
+  justify-self: stretch;
 }
 
 .right-side {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr repeat(3, 2fr);
+  grid-template-rows: 1.8fr 1.8fr 1.5fr .5fr;
   align-self: stretch;
   font-size: 18px;
-  background-color: red;
+  background-color: #003366;
   width: 130px;
   justify-self: start;
-  border-radius: 0 15% 15% 0;
+  border-radius: 0 30px 30px 0;
   padding-top: 5px;
+  color: white;
 }
 
 .color-palette {
@@ -124,18 +148,6 @@ html {
   width: 200%;
   height: 200%;
   transform: translate(-25%, -25%);
-}
-
-.color-circle {
-  grid-column: 1 / 3;
-  grid-row: 2 / 3;
-  justify-self: center;
-  align-self: center;
-  border-radius: 50%;
-  height: 70px;
-  width: 70px;
-  overflow: hidden;
-  border: dotted black 3px;
 }
 
 .color-title {
@@ -147,21 +159,23 @@ html {
 
 .change-color {
   grid-column: 1 / 3;
-  grid-row: 2 / 4;
+  grid-row: 1 / 3;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   justify-self: stretch;
   align-self: stretch;
-  gap: .5rem;
 }
 
 .change-color > * {
-  background-color: white;
+  background-color: #003366;
   border-radius: 20%;
   justify-self: center;
-  align-self: stretch;
-  width: 10vw;
+  align-self: end;
+  width: 6vw;
+  height: 8vh;
+  box-shadow: 10px 5px 5px black;
+  color: white;
 }
 
 .change-color > :first-child {
@@ -184,27 +198,38 @@ html {
   grid-row: 4 / 5;
 }
 
-.chameleon-button {
+.fun-buttons {
   grid-column: 1 / 3;
-  grid-row: 3 / 4;
+  grid-row: 1 / 3;
   align-self: center;
   justify-self: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 3rem;
+}
+
+.friendly-fire {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
   background-color: white;
+  font-size: 30px;
+  border-radius: 50%;
+  width: 5rem;
+  height: 4rem;
+  box-shadow: 10px 5px 5px black;
+}
+
+.chameleon-button {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  background-color: #003366;
   font-size: 30px;
   border-radius: 50%;
   text-decoration: line-through;
   color: red;
   pointer-events: none;
-  width: 3.5rem;
-  height: 2.5rem;
-}
-
-#right-button {
-  grid-column: 1 / 3;
-  grid-row: 4 / 5;
-  align-self: center;
-  justify-self: center;
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
+  width: 5rem;
+  height: 4rem;
+  box-shadow: 10px 5px 5px black;
 }

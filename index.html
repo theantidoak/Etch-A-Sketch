@@ -10,14 +10,12 @@
 <body>
   <div class='container'>
     <div class='left-side'>
-      <div class="layout">Change Layout:</div>
-      <div class="grid-size">
-        <input class='change-number' type='text' max='100' min='2' value='16'></input>
-        <span class="grid-span"> x 16</span>
+      <div class='change-color'>
+        <button value='color-wheel'>Color Palette</button>
+        <button value='random'>Roll the Dice</button>
+        <button value='rainbow'>Rainbow Road</button>
+        <button value='shades-of-grey'>Shades of Grey</button>
       </div>
-      <button class='chameleon-button'>🦎</button>
-      <button class='friendly-fire'>🔥</button>
-      <div class="color-circle"><input class='color-palette' type='color' value='#05E614'></input></div>
       <button class="shape">Change Shape</button>
     </div>
     <div class="mid-section">
@@ -44,17 +42,21 @@
             <li>Change the shape of the tiles</li>
         </div>
       </div>
-      <button class='clear-button'>Clear</button>
+      <div class='bottom-interface'>
+        <button class='clear-button'>Clear</button>
+        <div class="grid-size">
+          <input class='change-number' type='text' max='100' min='2' value='16'></input>
+          <span class="grid-span"> x 16</span>
+        </div>
+      </div>
+      <div class='interface-bottom-color'></div>
     </div>
     <div class="right-side">
-      <div class="color-title">Color Schemes:</div>
-      <div class='change-color'>
-        <button value='color-wheel'>Color Palette</button>
-        <button value='random'>Roll the Dice</button>
-        <button value='rainbow'>Rainbow Road</button>
-        <button value='shades-of-grey'>Shades of Grey</button>
+      <div class="fun-buttons">
+        <button class='chameleon-button'>🦎</button>
+        <button class='friendly-fire'>🔥</button>
       </div>
-      <button class="shape" id='right-button'>Change Shape</button>
+      <div class="color-circle"><input class='color-palette' type='color' value='#05E614'></input></div>
     </div>
 
   </div>
