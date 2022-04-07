@@ -126,6 +126,9 @@ function changeColorScheme() {
   if (this.value == "shades-of-grey") {
     interfaceSquares.forEach((square) => square.style.backgroundColor = "black");
     interface.style.backgroundColor = 'black';
+  } else {
+    interface.style.backgroundColor = 'white';
+    interfaceSquares.forEach((square) => square.style.backgroundColor = "white");
   }
   if (this.value == "color-wheel") {
     colorPalette.style.visibility = "visible";
