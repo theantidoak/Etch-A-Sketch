@@ -10,34 +10,51 @@
 <body>
   <div class='container'>
     <div class='left-side'>
-      <label for='change-number' class='label-number' >Change Grid Size</label>
-      <p class="range">(1-100):</p>
-      <input class='change-number' type='text' max='100' min='2' value='16'></input>
-      <p class='grid-size'>Grid Size: 16x16</p>
-      <button class='clear-button'>Clear</button>
-      <div class="friendly-fire-div">
-        <button class='friendly-fire'>Toggle Friendly-fire</button>
-        <p class='ff-toggle-on'>On</p>
+      <div class="layout">Change Layout:</div>
+      <div class="grid-size">
+        <input class='change-number' type='text' max='100' min='2' value='16'></input>
+        <span> x 16</span>
       </div>
-      <button class="shape">Click for Circle</button>
+      <button class='chameleon-button'>🦎</button>
+      <button class='friendly-fire'>🔥</button>
+      <div class="color-circle"><input class='color-palette' type='color' value='#05E614'></input></div>
+      <button class="shape">Change Shape</button>
     </div>
-    <div class='interface'></div>
+    <div class="mid-section">
+      <div class='interface-top'></div>
+      <div class='interface'>
+        <div class="instructions">
+          <h1>Instructions</h1>
+          <ol>
+            <li>Choose your Color Scheme to the right</li>
+            <li>If you choose Color Palette, choose your color to the left</li>
+            <li>🔥 = Friendly Fire
+              <ol>
+                <li>On (black) = Color over every tile</li>
+                <li>Off (white) = Color over black and white tiles only</li>
+              </ol>
+            </li>
+            <li>🦎 = Chameleon
+              <ol>
+                <li>On (black) Works with Roll the Dice, Rainbow Road, & Shades of Grey</li>
+                <li>Off (white)</li>
+              </ol>
+            </li>
+            <li>Choose the number of tiles for the grid</li>
+            <li>Change the shape of the tiles</li>
+        </div>
+      </div>
+      <button class='clear-button'>Clear</button>
+    </div>
     <div class="right-side">
-      <div>
-        <label for='change-color'>Change color scheme:</label>
-        <select class='change-color'>
-          <option value='default'>--Choose Here--</option>
-          <option value='color-wheel'>Color Palette</option>
-          <option value='random'>Roll the Dice</option>
-          <option value='rainbow'>Rainbow Road</option>
-          <option value='shades-of-grey'>Shades of Grey</option>
-        </select>
-        <input class='color-palette' type='color' value='#05E614'></input>
+      <div class="color-title">Color Schemes:</div>
+      <div class='change-color'>
+        <button value='color-wheel'>Color Palette</button>
+        <button value='random'>Roll the Dice</button>
+        <button value='rainbow'>Rainbow Road</button>
+        <button value='shades-of-grey'>Shades of Grey</button>
       </div>
-      <div class='chameleon'>
-        <button class='chameleon-button'>Chameleon mode</button>
-        <p class='chameleon-toggle'>Off</p>
-      </div>
+      <button class="shape" id='right-button'>Change Shape</button>
     </div>
 
   </div>
