@@ -1,16 +1,13 @@
 const container = document.querySelector('.container');
 const interface = document.querySelector(".interface");
-const numberChange = document.querySelector(".change-number");
+const numberInput = document.querySelector(".number-input");
 const clearButton = document.querySelector(".clear-button");
-const gridSpan = document.querySelector(".grid-span");
-const colorPalette = document.querySelector(".color-palette");
-const colorChange = document.querySelector(".change-color");
-const colorSchemes = colorChange.children;
-const colorOption = document.querySelectorAll("option");
-const chameleonButton = document.querySelector(".chameleon-button");
+const numberSpan = document.querySelector(".number-span");
+const colorWheel = document.querySelector(".color-wheel");
+const colorSchemes = document.querySelector(".color-schemes").children;
 const friendlyFireButton = document.querySelector(".friendly-fire");
-const ffToggle = document.querySelector(".ff-toggle-on");
-const shape = document.querySelectorAll(".shape");
+const chameleonButton = document.querySelector(".chameleon-button");
+const tileShape = document.querySelector(".tile-shape");
 const instructions = document.querySelector(".instructions");
 let flag = false;
 let color = 0;
@@ -21,12 +18,12 @@ let toggleShape = false;
 let currentScheme = "default";
 
 function createInterface() {
-  let number = Math.floor(numberChange.value);
+  let number = Math.floor(numberInput.value);
   for (let i = 0; i < number ** 2; i++) {
     const square = document.createElement("div");
     square.style.backgroundColor = "white";
-    interface.style.gridTemplateColumns = `repeat(${numberChange.value}, 1fr)`;
-    interface.style.gridTemplateRows = `repeat(${numberChange.value}, 1fr)`;
+    interface.style.gridTemplateColumns = `repeat(${numberInput.value}, 1fr)`;
+    interface.style.gridTemplateRows = `repeat(${numberInput.value}, 1fr)`;
     interface.appendChild(square);
     document.addEventListener("mousedown", () => (flag = true));
     document.addEventListener("mouseup", () => (flag = false));
@@ -35,14 +32,14 @@ function createInterface() {
 }
 
 function recalculateSquares() {
-  if (numberChange.value > 100 || numberChange.value < 1) {
-    numberChange.value = "";
+  if (numberInput.value > 100 || numberInput.value < 1) {
+    numberInput.value = "";
     return;
   }
   while (interface.firstChild) {
     interface.removeChild(interface.lastChild);
   }
-  gridSpan.textContent = ` x ${numberChange.value}`;
+  numberSpan.textContent = ` x ${numberInput.value}`;
   createInterface();
 }
 
@@ -59,38 +56,47 @@ function colorEachSquare() {
           this.style.backgroundColor = "black";
         }
         break;
-      case "color-wheel":
+      case "color-palette":
         if (friendlyFire) {
           white == true
-            ? (this.style.backgroundColor = `${colorPalette.value}`)
+            ? (this.style.backgroundColor = `${colorWheel.value}`)
             : null;
         } else {
-          this.style.backgroundColor = `${colorPalette.value}`;
+          this.style.backgroundColor = `${colorWheel.value}`;
         }
         break;
       case "random":
-        chameleon
-          ? [...interface.children].forEach(
-              (e) =>
-                (e.style.backgroundColor = `rgb(${Math.floor(
-                  Math.random() * 245
-                )}, ${Math.floor(Math.random() * 245)}, ${Math.floor(
-                  Math.random() * 245
-                )})`)
-            )
-          : null;
-        if (friendlyFire && chameleon) {
+        if (!friendlyFire && chameleon) {
+          [...interface.children].forEach(
+            (e) =>
+              (e.style.backgroundColor = `rgb(${Math.floor(
+                Math.random() * 245
+              )}, ${Math.floor(Math.random() * 245)}, ${Math.floor(
+                Math.random() * 245
+              )})`)
+          )
+          document.body.style.backgroundColor = `rgb(${Math.floor(
+            Math.random() * 245
+          )}, ${Math.floor(Math.random() * 245)}, ${Math.floor(
+            Math.random() * 245
+          )})`;    
+        } else if (chameleon) {
+          [...interface.children].forEach(
+            (e) =>
+              (e.style.backgroundColor = `rgb(${Math.floor(
+                Math.random() * 245
+              )}, ${Math.floor(Math.random() * 245)}, ${Math.floor(
+                Math.random() * 245
+              )})`)
+          )
+        } else if (friendlyFire) {
           white == true
             ? (this.style.backgroundColor = `rgb(${Math.floor(
                 Math.random() * 245
               )}, ${Math.floor(Math.random() * 245)}, ${Math.floor(
                 Math.random() * 245
               )})`)
-            : document.body.style.backgroundColor = `rgb(${Math.floor(
-              Math.random() * 245
-            )}, ${Math.floor(Math.random() * 245)}, ${Math.floor(
-              Math.random() * 245
-            )})`;
+            : null;
         } else {
           this.style.backgroundColor = `rgb(${Math.floor(
             Math.random() * 245
@@ -100,34 +106,46 @@ function colorEachSquare() {
         }
         break;
       case "rainbow":
-        chameleon
-          ? [...interface.children].forEach(
-              (e) =>
-                (e.style.backgroundColor = `hsl(${Math.floor(
-                  Math.random() * 356
-                )}, 100%, 50%)`)
-            )
-          : null;
-        if (friendlyFire && chameleon) {
+        if (!friendlyFire && chameleon) {
+          [...interface.children].forEach(
+            (e) =>
+              (e.style.backgroundColor = `hsl(${Math.floor(
+                Math.random() * 356
+              )}, 100%, 50%)`)
+          );
+          document.body.style.backgroundColor = `hsl(${color * 2}, 100%, 50%)`;
+        } else if (chameleon) {
+          [...interface.children].forEach(
+            (e) =>
+              (e.style.backgroundColor = `hsl(${Math.floor(
+                Math.random() * 356
+              )}, 100%, 50%)`)
+          );
+        } else if (friendlyFire) {
           white == true
             ? (this.style.backgroundColor = `hsl(${color * 2}, 100%, 50%)`)
-            : document.body.style.backgroundColor = `hsl(${color * 2}, 100%, 50%)`;
+            : null;
         } else {
           this.style.backgroundColor = `hsl(${color * 2}, 100%, 50%)`;
         }
         color++;
         break;
       case "shades-of-grey":
-        chameleon
-          ? [...interface.children].forEach((e) => {
-              grey = Math.floor(Math.random() * 255);
-              e.style.backgroundColor = `rgb(${grey}, ${grey}, ${grey})`;
-            })
-          : null;
-        if (friendlyFire && chameleon) {
-          black == true && friendlyFire == false
+        if (!friendlyFire && chameleon) {
+          [...interface.children].forEach((e) => {
+            grey = Math.floor(Math.random() * 255);
+            e.style.backgroundColor = `rgb(${grey}, ${grey}, ${grey})`;
+          });
+          document.body.style.backgroundColor =`rgb(${grey}, ${grey}, ${grey})`;
+        } else if (chameleon){
+          [...interface.children].forEach((e) => {
+            grey = Math.floor(Math.random() * 255);
+            e.style.backgroundColor = `rgb(${grey}, ${grey}, ${grey})`;
+          });
+        } else if (friendlyFire) {
+          black == true
             ? (this.style.backgroundColor = `rgb(${grey}, ${grey}, ${grey})`)
-            : document.body.style.backgroundColor =`rgb(${grey}, ${grey}, ${grey})`;
+            : null;
         } else {
           this.style.backgroundColor = `rgb(${grey}, ${grey}, ${grey})`;
         }
@@ -163,24 +181,22 @@ function changeColorScheme() {
     interface.removeChild(instructions);
     createInterface();
   }
-  [...colorSchemes].forEach(
-    (scheme) => {
-      if (scheme.style.backgroundColor = "white") {
+
+  [...colorSchemes].forEach((scheme) => {
+      if (scheme.style.backgroundColor = "skyblue") {
         scheme.style.backgroundColor = "#003366";
-        scheme.style.color = 'white';
+        scheme.style.color = 'skyblue';
+      }
+      if (scheme.value == this.value) {
+        scheme.style.backgroundColor = 'skyblue';
+        scheme.style.color = '#003366';
       }
     });
+
   const interfaceSquares = document.querySelectorAll(".interface div");
-  [...colorSchemes].forEach((scheme) => {
-    if (scheme.value == this.value) {
-      scheme.style.backgroundColor = 'white';
-      scheme.style.color = '#003366';
-    }
-  });
+
   if (this.value == "shades-of-grey") {
-    interfaceSquares.forEach(
-      (square) => (square.style.backgroundColor = "black")
-    );
+    interfaceSquares.forEach((square) => (square.style.backgroundColor = "black"));
     interface.style.backgroundColor = "black";
   } else {
     interface.style.backgroundColor = "white";
@@ -188,12 +204,13 @@ function changeColorScheme() {
       (square) => (square.style.backgroundColor = "white")
     );
   }
-  if (this.value == "color-wheel") {
-    colorPalette.style.visibility = "visible";
+
+  if (this.value == "color-palette") {
+    colorWheel.style.visibility = "visible";
     chameleonButton.style.textDecoration = "line-through";
     chameleonButton.style.pointerEvents = "none";
   } else {
-    colorPalette.style.visibility = "hidden";
+    colorWheel.style.visibility = "hidden";
     chameleonButton.style.display = "block";
     chameleonButton.style.textDecoration = "none";
     chameleonButton.style.pointerEvents = "auto";
@@ -204,7 +221,7 @@ function changeColorScheme() {
 function toggleFriendlyFire() {
   if (friendlyFire) {
     friendlyFireButton.textContent = "🔥";
-    friendlyFireButton.style.backgroundColor = "white";
+    friendlyFireButton.style.backgroundColor = "skyblue";
   } else {
     friendlyFireButton.textContent = "🔥";
     friendlyFireButton.style.backgroundColor = "#003366";
@@ -215,7 +232,7 @@ function toggleFriendlyFire() {
 function toggleChameleon() {
   if (!chameleon) {
     chameleonButton.textContent = "🦎";
-    chameleonButton.style.backgroundColor = "white";
+    chameleonButton.style.backgroundColor = "skyblue";
   } else {
     chameleonButton.textContent = "🦎";
     chameleonButton.style.backgroundColor = "#003366";
@@ -231,30 +248,28 @@ function toggleChameleon() {
 }
 
 function toggleDivShape() {
+  if (interface.firstElementChild == instructions) {
+    interface.removeChild(instructions);
+    createInterface();
+  }
   const interfaceSquares = document.querySelectorAll(".interface div");
   if (toggleShape) {
     interfaceSquares.forEach((square) => (square.style.borderRadius = "50%"));
-    shape.forEach((shapes) => {
-      shapes.style.borderRadius = "50%";
-    });
+    tileShape.style.borderRadius = "50%";
   } else {
     interfaceSquares.forEach((square) => (square.style.borderRadius = "0"));
-    shape.forEach((shapes) => {
-      shapes.style.borderRadius = "0";
-      shapes.style.height = "80px";
-      shapes.style.width = "80px";
-      shapes.textContent = '';
-    });
+    tileShape.style.borderRadius = "0";
+    tileShape.style.height = "80px";
+    tileShape.style.width = "80px";
+    tileShape.textContent = '';
   }
   toggleShape = !toggleShape;
 }
 
-// createInterface();
-numberChange.addEventListener("input", recalculateSquares);
+numberInput.addEventListener("input", recalculateSquares);
 clearButton.addEventListener("click", clearInterface);
 [...colorSchemes].forEach((scheme) =>
-  scheme.addEventListener("click", changeColorScheme)
-);
+scheme.addEventListener("click", changeColorScheme));
 friendlyFireButton.addEventListener("click", toggleFriendlyFire);
 chameleonButton.addEventListener("click", toggleChameleon);
-shape.forEach((shapes) => shapes.addEventListener("click", toggleDivShape));
+tileShape.addEventListener("click", toggleDivShape);

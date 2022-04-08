@@ -10,49 +10,49 @@
 <body>
   <div class='container'>
     <div class='left-side'>
-      <div class='change-color'>
-        <button value='color-wheel'>Color Palette</button>
+      <div class='color-schemes'>
+        <button value='color-palette'>Color Palette</button>
         <button value='random'>Roll the Dice</button>
         <button value='rainbow'>Rainbow Road</button>
         <button value='shades-of-grey'>Shades of Grey</button>
       </div>
-      <button class="shape">Change Shape</button>
+      <button class="tile-shape">Change Shape</button>
     </div>
     <div class="mid-section">
-      <div class='interface-top'></div>
+      <div class='interface-top-color'></div>
       <div class='interface'>
         <div class="instructions">
           <h1>Instructions</h1>
           <ol>
             <li>Choose your Color Scheme on the left</li>
             <li>🔥 = Friendly Fire
-              <ol>
-                <li>On (white) = Color over every tile</li>
-                <li>Off (blue) = Color over black and white tiles only</li>
-              </ol>
+              <ul>
+                <li>On = Color over every tile</li>
+                <li>Off = Color over black and white tiles only</li>
+              </ul>
             </li>
             <li>🦎 = Chameleon
               <ul>
-                <li>Hint: Chameleon On (white) & Friendly Fire Off</li>
+                <li>Party Mode Hint: Combine Chameleon with another button</li>
               </ul>
             </li>
         </div>
       </div>
-      <div class='bottom-interface'>
-        <button class='clear-button'>Clear</button>
+      <div class='interface-bottom'>
+        <button class='clear-button'>Reset</button>
         <div class="grid-size">
-          <input class='change-number' type='text' max='100' min='2' value='16'></input>
-          <span class="grid-span"> x 16</span>
+          <input class='number-input' type='number' max='100' min='2' value='16'></input>
+          <span class="number-span"> x 16</span>
         </div>
       </div>
       <div class='interface-bottom-color'></div>
     </div>
     <div class="right-side">
       <div class="fun-buttons">
-        <button class='chameleon-button'>🦎</button>
         <button class='friendly-fire'>🔥</button>
+        <button class='chameleon-button'>🦎</button>
       </div>
-      <div class="color-circle"><input class='color-palette' type='color' value='#05E614'></input></div>
+      <div class="color-circle"><input class='color-wheel' type='color' value='#05E614'></input></div>
     </div>
 
   </div>
