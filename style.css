@@ -79,10 +79,6 @@ html {
   border-radius: 50%;
 }
 
-.instructions h1 {
-  text-align: center;
-}
-
 .interface-bottom {
   display: grid;
   grid-template-columns: 3fr 1fr;

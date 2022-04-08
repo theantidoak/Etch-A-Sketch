@@ -8,15 +8,15 @@ const colorSchemes = document.querySelector(".color-schemes").children;
 const friendlyFireButton = document.querySelector(".friendly-fire");
 const chameleonButton = document.querySelector(".chameleon-button");
 const tileShape = document.querySelector(".tile-shape");
-const instructions = document.querySelector(".instructions");
-let flag = false;
 let color = 0;
 let grey = 255;
+let flag = false;
 let friendlyFire = false;
 let chameleon = false;
 let toggleShape = false;
 let currentScheme = "default";
 
+// Create tiles for the interface
 function createInterface() {
   let number = Math.floor(numberInput.value);
   for (let i = 0; i < number ** 2; i++) {
@@ -31,6 +31,7 @@ function createInterface() {
   }
 }
 
+// Recreate the tiles when the input is used
 function recalculateSquares() {
   if (numberInput.value > 100 || numberInput.value < 1) {
     numberInput.value = "";
@@ -43,6 +44,7 @@ function recalculateSquares() {
   createInterface();
 }
 
+// Based on the color scheme, friendly-fire, & chameleon, add background color to the tiles
 function colorEachSquare() {
   const white = this.style.backgroundColor == "white";
   const black = this.style.backgroundColor == "black";
@@ -66,7 +68,7 @@ function colorEachSquare() {
         }
         break;
       case "random":
-        if (!friendlyFire && chameleon) {
+        if (friendlyFire && chameleon) {
           [...interface.children].forEach(
             (e) =>
               (e.style.backgroundColor = `rgb(${Math.floor(
@@ -106,7 +108,7 @@ function colorEachSquare() {
         }
         break;
       case "rainbow":
-        if (!friendlyFire && chameleon) {
+        if (friendlyFire && chameleon) {
           [...interface.children].forEach(
             (e) =>
               (e.style.backgroundColor = `hsl(${Math.floor(
@@ -131,7 +133,7 @@ function colorEachSquare() {
         color++;
         break;
       case "shades-of-grey":
-        if (!friendlyFire && chameleon) {
+        if (friendlyFire && chameleon) {
           [...interface.children].forEach((e) => {
             grey = Math.floor(Math.random() * 255);
             e.style.backgroundColor = `rgb(${grey}, ${grey}, ${grey})`;
@@ -158,12 +160,9 @@ function colorEachSquare() {
   }
 }
 
+// Clear the interface and recreate the tiles while shaking
 function clearInterface() {
   container.classList.add('shake');
-  if (interface.firstElementChild == instructions) {
-    interface.removeChild(instructions);
-    createInterface();
-  }
   if (currentScheme == "shades-of-grey") {
     [...interface.children].forEach((e) => (e.style.backgroundColor = "black"));
     interface.style.backgroundColor = "black";
@@ -176,12 +175,8 @@ function clearInterface() {
   setTimeout(() => container.classList.remove('shake'), 240);
 }
 
+// Re-color the color scheme buttons and adjust the color scheme values
 function changeColorScheme() {
-  if (interface.firstElementChild == instructions) {
-    interface.removeChild(instructions);
-    createInterface();
-  }
-
   [...colorSchemes].forEach((scheme) => {
       if (scheme.style.backgroundColor = "skyblue") {
         scheme.style.backgroundColor = "#003366";
@@ -194,7 +189,6 @@ function changeColorScheme() {
     });
 
   const interfaceSquares = document.querySelectorAll(".interface div");
-
   if (this.value == "shades-of-grey") {
     interfaceSquares.forEach((square) => (square.style.backgroundColor = "black"));
     interface.style.backgroundColor = "black";
@@ -218,6 +212,7 @@ function changeColorScheme() {
   currentScheme = this.value;
 }
 
+// Toggle Friendly-fire: Color over all tiles vs. color over black/white tiles only
 function toggleFriendlyFire() {
   if (friendlyFire) {
     friendlyFireButton.textContent = "🔥";
@@ -229,6 +224,7 @@ function toggleFriendlyFire() {
   friendlyFire = !friendlyFire;
 }
 
+// Toggle Chameleon: Party!
 function toggleChameleon() {
   if (!chameleon) {
     chameleonButton.textContent = "🦎";
@@ -247,11 +243,8 @@ function toggleChameleon() {
   chameleon = !chameleon;
 }
 
+// Toggle the shape of the tiles and the tile button
 function toggleDivShape() {
-  if (interface.firstElementChild == instructions) {
-    interface.removeChild(instructions);
-    createInterface();
-  }
   const interfaceSquares = document.querySelectorAll(".interface div");
   if (toggleShape) {
     interfaceSquares.forEach((square) => (square.style.borderRadius = "50%"));
@@ -266,6 +259,7 @@ function toggleDivShape() {
   toggleShape = !toggleShape;
 }
 
+createInterface();
 numberInput.addEventListener("input", recalculateSquares);
 clearButton.addEventListener("click", clearInterface);
 [...colorSchemes].forEach((scheme) =>
