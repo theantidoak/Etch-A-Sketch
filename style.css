@@ -86,7 +86,7 @@ html {
   justify-self: center;
   align-self: end;
   background-color: #003366;
-  gap: 1rem;
+  gap: 1.5vw;
   height: 8vh;
 }
 
@@ -97,8 +97,7 @@ html {
 }
 
 .number-input {
-  width: 15.5rem;
-  height: 1rem;
+  width: 25vw;
   align-self: center;
   border: none;
   justify-self: center;
@@ -108,8 +107,9 @@ html {
   border-radius: 20px;
   color: white;
   background-color: #003366;
-  justify-self: end;
+  justify-self: start;
   align-self: center;
+  box-shadow: 10px 5px 5px black;
 }
 
 /* Right Side */
