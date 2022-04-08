@@ -1,7 +1,7 @@
 const container = document.querySelector('.container');
 const interface = document.querySelector(".interface");
 const numberInput = document.querySelector(".number-input");
-const clearButton = document.querySelector(".clear-button");
+const resetButton = document.querySelector(".reset-button");
 const numberSpan = document.querySelector(".number-span");
 const colorWheel = document.querySelector(".color-wheel");
 const colorSchemes = document.querySelector(".color-schemes").children;
@@ -21,18 +21,23 @@ function createInterface() {
   let number = Math.floor(numberInput.value);
   for (let i = 0; i < number ** 2; i++) {
     const square = document.createElement("div");
-    square.style.backgroundColor = "white";
+    if (currentScheme == "shades-of-grey") {
+      square.style.backgroundColor = 'black';
+      grey = 255;
+    } else {
+      square.style.backgroundColor = "white";
+    }
     interface.style.gridTemplateColumns = `repeat(${numberInput.value}, 1fr)`;
     interface.style.gridTemplateRows = `repeat(${numberInput.value}, 1fr)`;
     interface.appendChild(square);
-    document.addEventListener("mousedown", () => (flag = true));
-    document.addEventListener("mouseup", () => (flag = false));
+    square.addEventListener("mousedown", colorEachSquare);
     square.addEventListener("mouseenter", colorEachSquare);
   }
 }
 
 // Recreate the tiles when the input is used
 function recalculateSquares() {
+
   if (numberInput.value > 100 || numberInput.value < 1) {
     numberInput.value = "";
     return;
@@ -40,7 +45,7 @@ function recalculateSquares() {
   while (interface.firstChild) {
     interface.removeChild(interface.lastChild);
   }
-  numberSpan.textContent = ` x ${numberInput.value}`;
+  numberSpan.textContent = `${numberInput.value}x${numberInput.value}`;
   createInterface();
 }
 
@@ -259,11 +264,17 @@ function toggleDivShape() {
   toggleShape = !toggleShape;
 }
 
+document.body.addEventListener("drop", (e) => e.preventDefault());
+document.body.addEventListener("dragstart", (e) => e.preventDefault());
+document.body.addEventListener("mousedown", () => (flag = true));
+document.body.addEventListener("mouseup", () => (flag = false));
 createInterface();
 numberInput.addEventListener("input", recalculateSquares);
-clearButton.addEventListener("click", clearInterface);
+numberInput.addEventListener('change', recalculateSquares)
+resetButton.addEventListener("click", clearInterface);
 [...colorSchemes].forEach((scheme) =>
 scheme.addEventListener("click", changeColorScheme));
 friendlyFireButton.addEventListener("click", toggleFriendlyFire);
 chameleonButton.addEventListener("click", toggleChameleon);
 tileShape.addEventListener("click", toggleDivShape);
+
