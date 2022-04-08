@@ -197,7 +197,7 @@ function changeColorScheme() {
   if (this.value == "shades-of-grey") {
     interfaceSquares.forEach((square) => (square.style.backgroundColor = "black"));
     interface.style.backgroundColor = "black";
-  } else {
+  } else if (currentScheme == "shades-of-grey") {
     interface.style.backgroundColor = "white";
     interfaceSquares.forEach(
       (square) => (square.style.backgroundColor = "white")
