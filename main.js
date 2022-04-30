@@ -8,16 +8,19 @@ const colorSchemes = document.querySelector(".color-schemes").children;
 const friendlyFireButton = document.querySelector(".friendly-fire");
 const chameleonButton = document.querySelector(".chameleon-button");
 const tileShape = document.querySelector(".tile-shape");
+
 let color = 0;
 let grey = 255;
 let flag = false;
 let friendlyFire = false;
 let chameleon = false;
 let toggleShape = false;
+let currentTileShape = 'circle';
 let currentScheme = "default";
 
 // Create tiles for the interface
 function createInterface() {
+  
   let number = Math.floor(numberInput.value);
   for (let i = 0; i < number ** 2; i++) {
     const square = document.createElement("div");
@@ -26,6 +29,12 @@ function createInterface() {
       grey = 255;
     } else {
       square.style.backgroundColor = "white";
+    }
+    const interfaceSquares = document.querySelectorAll(".interface div");
+    if (currentTileShape == 'circle') {
+      interfaceSquares.forEach((square) => (square.style.borderRadius = "50%"));
+    } else {
+      interfaceSquares.forEach((square) => (square.style.borderRadius = "0"));
     }
     interface.style.gridTemplateColumns = `repeat(${numberInput.value}, 1fr)`;
     interface.style.gridTemplateRows = `repeat(${numberInput.value}, 1fr)`;
@@ -254,12 +263,14 @@ function toggleDivShape() {
   if (toggleShape) {
     interfaceSquares.forEach((square) => (square.style.borderRadius = "50%"));
     tileShape.style.borderRadius = "50%";
+    currentTileShape = 'circle';
   } else {
     interfaceSquares.forEach((square) => (square.style.borderRadius = "0"));
     tileShape.style.borderRadius = "0";
     tileShape.style.height = "80px";
     tileShape.style.width = "80px";
     tileShape.textContent = '';
+    currentTileShape = 'square';
   }
   toggleShape = !toggleShape;
 }
